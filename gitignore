@@ -1,0 +1,81 @@
+# ================================
+#  IGNORE AUDIO & MEDIA FILES
+# ================================
+*.flac
+*.wav
+*.mp3
+*.aac
+*.m4a
+*.opus
+*.ogg
+
+*.webm
+*.mp4
+*.mkv
+
+# Ignore any audio inside archive directories
+archive/**/*.flac
+archive/**/*.wav
+archive/**/*.mp3
+archive/**/*.webm
+archive/**/*.mp4
+archive/**/*.mkv
+
+# ================================
+#  IGNORE THUMBNAILS
+# ================================
+*.jpg
+*.jpeg
+*.png
+*.webp
+
+archive/**/*.jpg
+archive/**/*.png
+archive/**/*.webp
+
+# ================================
+#  IGNORE METADATA / RAW OUTPUT
+# ================================
+*.json
+*.info.json
+*.part
+*.temp
+*.tmp
+
+# ================================
+#  IGNORE SENSITIVE/PRIVATE FILES
+# ================================
+.env
+*.key
+*.pem
+funding/donor_info/*
+legal/founder_will/*
+
+# ================================
+#  IGNORE DEPENDENCIES
+# ================================
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+
+# ================================
+#  IGNORE OS FILES
+# ================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ================================
+#  IGNORE IDE / EDITOR SETTINGS
+# ================================
+.vscode/
+.idea/
+*.swp
+
+# ================================
+#  IGNORE ARCHIVE TEMP DOWNLOADS
+# ================================
+*.aria2
+*.crdownload
+*.part
