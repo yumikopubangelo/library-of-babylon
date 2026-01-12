@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "title": "「3時12分 / TAKU INOUE & 星街すいせい」MUSIC VIDEO",
+  "title_native": "「3時12分 / TAKU INOUE & 星街すいせい」MUSIC VIDEO",
+  "title_romanized": "",
+  "type": "song",
+  "format_variant": "music_video",
+  "release_date": "2021-07-14",
+  "archived_date": "2025-12-13",
+  "last_updated": "2025-12-13T16:53:21.968608",
+  "files": {
+    "audio": "3_12_TAKU_INOUE_MUSIC_VIDEO.flac",
+    "video": "",
+    "thumbnail": "",
+    "lyrics": "lyrics.json",
+    "cover_art": ""
+  },
+  "technical": {
+    "duration_seconds": 192,
+    "duration_human": "3:12",
+    "file_size_bytes": 44963063,
+    "file_size_human": "42.88 MB",
+    "format": "flac",
+    "sha256": "1121851c84a2339f6cdb965097d22783d5faa0df979cc02d9de3380e4f9fb4ae",
+    "bitrate": 1817423,
+    "sample_rate": 48000,
+    "channels": 2
+  },
+    "credits": {
+    "artist": "TAKU INOUE",
+    "composer": "TAKU INOUE",
+    "lyricist": "TAKU INOUE",
+    "arranger": "TAKU INOUE",
+    "production_manager": "Yusaku Suzuki",
+    "producer": "Yosuke Shigemura (Headlight)",
+    "production_company": "Headlight",
+    "timelapse_photography": "Wataru Kitamura",
+    "video_director": "Seiya Uehara, Koichi Kitamura, Satoru Fujita",
+    "editor": "Yuma Mesuda, Keiichiro Niwano (CONNECTION)",
+    "colorist": "Yoshiyuki Nishida (CONNECTION)",
+    "cast": "Sayo Ampo"
+  },
+  "classification": {
+    "category": "singles",
+    "genre": [
+      "Pop"
+    ],
+    "themes": [
+      "fragile hope",
+      "quiet perseverance",
+      "subtle change"
+    ],
+    "emotional_tags": [
+      "melancholic",
+      "hopeful",
+      "introspective"
+    ],
+    "language": "ja",
+    "explicit": false
+  },
+  "source": {
+    "platform": "YouTube",
+    "url": "https://youtu.be/LYFciXBcXIQ?si=LimSb09DWA6Rum3A",
+    "upload_date": "",
+    "availability": "available"
+  },
+  "preservation": {
+    "why_archived": "This song is archived because it captures the fragility of hope and the quiet persistence required to hold onto it. By preserving this work, the archive aims to affirm that even fragile hope carries meaning and deserves to be remembered.",
+    "cultural_significance": "This work is recognized among fans for its quiet emotional tone and late-night atmosphere, though further research is required to document its broader cultural impact.",
+    "historical_context": "",
+    "archivist_notes": "",
+    "verification_status": "unverified",
+    "completeness": {
+      "has_lyrics": true,
+      "has_translation": true,
+      "has_analysis": true,
+      "has_cover_art": false,
+      "has_video": false
+    }
+  },
+  "related_works": {
+    "album": "",
+    "era": "",
+    "part_of_series": [],
+    "inspired_by": [],
+    "references": []
+  }
+}

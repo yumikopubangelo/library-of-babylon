@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "title": "",
+  "title_native": "",
+  "title_romanized": "",
+  "type": "song|video|stream|tweet",
+  "release_date": "YYYY-MM-DD",
+  "archived_date": "YYYY-MM-DD",
+  "last_updated": "2025-12-13T18:51:18.247928",
+  "files": {
+    "audio": "",
+    "video": "",
+    "thumbnail": "",
+    "lyrics": "",
+    "cover_art": ""
+  },
+  "technical": {
+    "duration_seconds": 0,
+    "duration_human": "",
+    "file_size_bytes": 0,
+    "file_size_human": "",
+    "format": "",
+    "sha256": "",
+    "bitrate": null,
+    "sample_rate": null,
+    "channels": null
+  },
+  "credits": {
+    "artist": "",
+    "composer": "",
+    "lyricist": "",
+    "arranger": "",
+    "producer": "",
+    "mixing": "",
+    "mastering": "",
+    "illustration": "",
+    "video_direction": ""
+  },
+  "classification": {
+    "category": "singles",
+    "genre": [],
+    "themes": [],
+    "emotional_tags": [],
+    "language": "ja",
+    "explicit": false
+  },
+  "source": {
+    "platform": "",
+    "url": "",
+    "upload_date": "",
+    "availability": "available"
+  },
+  "preservation": {
+    "why_archived": "",
+    "cultural_significance": "",
+    "historical_context": "",
+    "archivist_notes": "",
+    "verification_status": "unverified",
+    "completeness": {
+      "has_lyrics": false,
+      "has_translation": false,
+      "has_analysis": false,
+      "has_cover_art": false,
+      "has_video": false
+    }
+  },
+  "related_works": {
+    "album": "",
+    "era": "",
+    "part_of_series": [],
+    "inspired_by": [],
+    "references": []
+  },
+  "url_original": "",
+  "themes": [],
+  "emotional_tags": [],
+  "cultural_significance": "",
+  "why_archived": ""
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "title": "彗星 / 星街すいせい(official)",
+  "title_native": "彗星 / 星街すいせい(official)",
+  "title_romanized": "Suisei",
+  "type": "song",
+  "release_date": "2025-12-5",
+  "archived_by": "The Library of Babylon",
+  "archived_date": "2025-12-13",
+  "last_updated": "2025-12-13T16:12:16.733456",
+  "files": {
+    "audio": "official.flac",
+    "video": "",
+    "thumbnail": "",
+    "lyrics": "",
+    "cover_art": ""
+  },
+  "technical": {
+    "duration_seconds": 229,
+    "duration_human": "3:49",
+    "file_size_bytes": 54008303,
+    "file_size_human": "51.51 MB",
+    "format": "flac",
+    "sha256": "b23fd7b6953b4a7ae4c4cc43f606f34d8a6054477dae8d7249916b13438304d0",
+    "bitrate": 1867896,
+    "sample_rate": 48000,
+    "channels": 2
+  },
+  "credits": {
+    "artist": "Suisei Channel",
+    "composer": "",
+    "lyricist": "",
+    "arranger": "",
+    "producer": "",
+    "mixing": "",
+    "mastering": "",
+    "illustration": "",
+    "video_direction": ""
+  },
+  "classification": {
+    "category": "singles",
+    "genre": [],
+    "themes": [],
+    "emotional_tags": [],
+    "language": "ja",
+    "explicit": false
+  },
+  "source": {
+    "platform": "",
+    "url": "",
+    "upload_date": "",
+    "availability": "available"
+  },
+  "preservation": {
+    "why_archived": "Part of creator's complete discography preservation.",
+    "cultural_significance": "",
+    "historical_context": "",
+    "archivist_notes": "",
+    "verification_status": "unverified",
+    "completeness": {
+      "has_lyrics": false,
+      "has_translation": false,
+      "has_analysis": false,
+      "has_cover_art": false,
+      "has_video": false
+    }
+  },
+  "related_works": {
+    "album": "",
+    "era": "",
+    "part_of_series": [],
+    "inspired_by": [],
+    "references": []
+  }
+}

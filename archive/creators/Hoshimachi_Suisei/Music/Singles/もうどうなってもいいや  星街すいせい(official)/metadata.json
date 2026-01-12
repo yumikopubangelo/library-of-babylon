@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "title": "もうどうなってもいいや / 星街すいせい(official)",
+  "title_native": "もうどうなってもいいや / 星街すいせい(official)",
+  "title_romanized": "",
+  "type": "song",
+  "release_date": "",
+  "archived_by": "The Library of Babylon",
+  "archived_date": "2025-12-13",
+  "last_updated": "2025-12-13T16:19:15.704878",
+  "files": {
+    "audio": "official.flac",
+    "video": "",
+    "thumbnail": "",
+    "lyrics": "",
+    "cover_art": ""
+  },
+  "technical": {
+    "duration_seconds": 214,
+    "duration_human": "3:34",
+    "file_size_bytes": 47044958,
+    "file_size_human": "44.87 MB",
+    "format": "flac",
+    "sha256": "13fa13b3e8e353c35ca5d39eb3a8e9a14a3af3f9f4d95c5293e7eb5c4e9cba21",
+    "bitrate": 1722795,
+    "sample_rate": 48000,
+    "channels": 2
+  },
+  "credits": {
+    "artist": "Suisei Channel",
+    "composer": "",
+    "lyricist": "",
+    "arranger": "",
+    "producer": "",
+    "mixing": "",
+    "mastering": "",
+    "illustration": "",
+    "video_direction": ""
+  },
+  "classification": {
+    "category": "singles",
+    "genre": [],
+    "themes": [],
+    "emotional_tags": [],
+    "language": "ja",
+    "explicit": false
+  },
+  "source": {
+    "platform": "",
+    "url": "",
+    "upload_date": "",
+    "availability": "available"
+  },
+  "preservation": {
+    "why_archived": "Part of creator's complete discography preservation.",
+    "cultural_significance": "",
+    "historical_context": "",
+    "archivist_notes": "",
+    "verification_status": "unverified",
+    "completeness": {
+      "has_lyrics": false,
+      "has_translation": false,
+      "has_analysis": false,
+      "has_cover_art": false,
+      "has_video": false
+    }
+  },
+  "related_works": {
+    "album": "",
+    "era": "",
+    "part_of_series": [],
+    "inspired_by": [],
+    "references": []
+  }
+}

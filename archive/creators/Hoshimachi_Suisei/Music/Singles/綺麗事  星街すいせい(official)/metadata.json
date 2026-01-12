@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0.0",
+  "title": "綺麗事 / 星街すいせい(official)",
+  "title_native": "綺麗事 / 星街すいせい(official)",
+  "title_romanized": "",
+  "type": "song",
+  "release_date": "",
+  "archived_date": "2025-12-13",
+  "last_updated": "2025-12-13T18:51:18.245373",
+  "files": {
+    "audio": "official.flac",
+    "video": "",
+    "thumbnail": "",
+    "lyrics": "",
+    "cover_art": ""
+  },
+  "technical": {
+    "duration_seconds": 295,
+    "duration_human": "",
+    "file_size_bytes": 57370149,
+    "file_size_human": "",
+    "format": "flac",
+    "sha256": "7d0b9b42ce5731c224a8d2bb36aaf235796692a6bec0e1381092279fadcc45a5",
+    "bitrate": null,
+    "sample_rate": null,
+    "channels": null
+  },
+  "credits": {
+    "artist": "Hoshimachi Suisei",
+    "composer": "",
+    "lyricist": "",
+    "arranger": "",
+    "producer": "",
+    "mixing": "",
+    "mastering": "",
+    "illustration": "",
+    "video_direction": ""
+  },
+  "classification": {
+    "category": "singles",
+    "genre": [],
+    "themes": [],
+    "emotional_tags": [],
+    "language": "ja",
+    "explicit": false
+  },
+  "source": "https://youtu.be/VPhLXeU25KA?si=7v-NpRxiHhzseUoo",
+  "preservation": {
+    "why_archived": "",
+    "cultural_significance": "",
+    "historical_context": "",
+    "archivist_notes": "Archived by: The Library of Babylon",
+    "verification_status": "unverified",
+    "completeness": {
+      "has_lyrics": false,
+      "has_translation": false,
+      "has_analysis": false,
+      "has_cover_art": false,
+      "has_video": false
+    }
+  },
+  "related_works": {
+    "album": "",
+    "era": "",
+    "part_of_series": [],
+    "inspired_by": [],
+    "references": []
+  },
+  "themes": [],
+  "emotional_tags": [],
+  "cultural_significance": "",
+  "why_archived": "Part of Suisei complete discography preservation."
+}
