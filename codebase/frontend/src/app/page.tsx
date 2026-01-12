@@ -1,28 +1,43 @@
 'use client';
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import StatCard from "@/components/StatCard";
+import CreatorCard from "@/components/CreatorCard";
 
-type Creator = {
-  id: string;
-  name: string;
-  worksCount: number;
-  completeness: number;
+// Hardcoded Data for Design Verification
+const MOCK_CREATORS = [
+  {
+    id: "Hoshimachi_Suisei",
+    name: "Hoshimachi Suisei",
+    worksCount: 142,
+    completeness: 0.85,
+    description: "A pioneering VTuber known for her exceptional music and performances. Her works blend powerful vocals with meaningful lyrics, creating timeless pieces of digital culture."
+  }
+];
+
+const MOCK_STATS = {
+    creators: 1,
+    works: 142,
+    days: 1
 };
 
 export default function Home() {
-  const [creators, setCreators] = useState<Creator[]>([]);
-  const [totalWorks, setTotalWorks] = useState(0);
-  const [loading, setLoading] = useState(true);
+  // We can keep the state logic if we want to switch to real API later,
+  // but for now we initialize with MOCK data to ensure display.
+  const [creators, setCreators] = useState(MOCK_CREATORS);
+  const [totalWorks, setTotalWorks] = useState(MOCK_STATS.works);
+  const [loading, setLoading] = useState(false); // Set to false to show data immediately
 
+  // Commenting out the fetch for now to prevent "Loading..." state indefinitely
+  /*
   useEffect(() => {
     fetch("/api/creator", { cache: "no-store" })
       .then(res => res.json())
       .then(data => {
         const creatorList = data.creators || [];
         setCreators(creatorList);
-        setTotalWorks(creatorList.reduce((sum: number, c: Creator) => sum + c.worksCount, 0));
+        setTotalWorks(creatorList.reduce((sum: number, c: any) => sum + c.worksCount, 0));
         setLoading(false);
       })
       .catch(err => {
@@ -30,202 +45,102 @@ export default function Home() {
         setLoading(false);
       });
   }, []);
+  */
 
   const featuredCreator = creators.find(c => c.id === "Hoshimachi_Suisei");
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+    <main className="min-h-screen pt-20 relative overflow-hidden">
+      {/* Background Ambience */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-babylon-lapis-900/50 to-transparent"></div>
+          <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-babylon-gold-600/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-16 relative z-10">
+      <div className="container mx-auto px-6 py-20 relative z-10">
+
         {/* Hero Section */}
-        <div className="text-center mb-20">
-          <div className="inline-block mb-6">
-            <div className="text-7xl mb-4 animate-bounce">Library</div>
+        <div className="text-center mb-32">
+          <div className="inline-block mb-8">
+            <div className="text-sm tracking-[0.5em] text-babylon-gold-500 uppercase border-b border-babylon-gold-600/30 pb-2">
+                Est. 2025
+            </div>
           </div>
           
-          <h1 className="text-7xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-fade-in">
-            Library of Babylon
+          <h1 className="text-6xl md:text-8xl font-bold mb-8 text-gold-gradient drop-shadow-lg tracking-tight">
+            LIBRARY OF BABYLON
           </h1>
 
-          <p className="text-2xl text-gray-300 mb-4 max-w-2xl mx-auto">
-            Preserving ephemeral beauty for eternity
+          <p className="text-xl md:text-2xl text-babylon-sand-200/80 mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+            "Preserving the ephemeral starlight of digital creation for the eternity of history."
           </p>
           
-          <p className="text-gray-400 max-w-xl mx-auto">
-            A digital archive dedicated to preserving the works of digital creators, musicians, and artists for future generations
-          </p>
+          <div className="flex justify-center gap-6">
+            <Link
+                href="/search"
+                className="group relative px-8 py-4 bg-babylon-lapis-800 border border-babylon-gold-500/50 hover:bg-babylon-gold-600 hover:text-white transition-all duration-300"
+            >
+                <span className="font-serif tracking-widest">ENTER ARCHIVE</span>
+            </Link>
+          </div>
         </div>
 
         {/* Stats Section */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 max-w-5xl mx-auto">
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32 max-w-6xl mx-auto border-y border-babylon-gold-600/10 py-16">
           <StatCard
             title="Creators Archived"
             value={loading ? '...' : creators.length}
-            gradient="from-blue-500 to-cyan-500"
+            icon="🏛️"
           />
           <StatCard
             title="Works Preserved"
             value={loading ? '...' : totalWorks}
-            gradient="from-purple-500 to-pink-500"
+            icon="📜"
           />
           <StatCard
             title="Days Since Genesis"
             value={1}
-            gradient="from-orange-500 to-red-500"
+            icon="⏳"
           />
         </section>
 
         {/* Featured Creator */}
-        <section className="max-w-5xl mx-auto mb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <h2 className="text-4xl font-bold">Featured Creator</h2>
+        <section className="max-w-6xl mx-auto mb-24">
+          <div className="flex items-end justify-between mb-12 border-b border-babylon-gold-600/20 pb-4">
+            <h2 className="text-4xl font-bold text-babylon-sand-100">Featured Collection</h2>
+            <Link href="/creators" className="text-babylon-gold-500 hover:text-babylon-gold-400 text-sm tracking-widest uppercase mb-2">
+                View All Creators →
+            </Link>
           </div>
 
           {featuredCreator ? (
             <CreatorCard
               name={featuredCreator.name}
-              description="A pioneering VTuber known for her exceptional music and performances. Her works blend powerful vocals with meaningful lyrics, creating timeless pieces of digital culture."
+              description={featuredCreator.description || ""}
               worksCount={featuredCreator.worksCount}
               completeness={featuredCreator.completeness}
               href={`/creator/${featuredCreator.id}`}
+              imagePath="/api/image?path=creators/Hoshimachi_Suisei/outfit/suisei.png"
             />
           ) : (
-            <div className="text-center py-8 text-gray-400">
-              {loading ? 'Loading featured creator...' : 'Featured creator not found'}
+            <div className="text-center py-20 border border-babylon-gold-600/20 bg-babylon-lapis-900/50">
+              <div className="text-babylon-gold-600 mb-4 text-xl">Display Case Empty</div>
+              <div className="text-babylon-sand-200/50">No featured creator currently selected.</div>
             </div>
           )}
         </section>
 
-        {/* Mission Statement */}
-        <section className="max-w-4xl mx-auto mb-16 text-center">
-          <div className="bg-gradient-to-r from-gray-800/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-8 border border-gray-700">
-            <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-            <p className="text-gray-300 leading-relaxed">
-              In the digital age, countless works of art, music, and culture exist only as ephemeral streams and videos. 
-              The Library of Babylon is dedicated to preserving these treasures with proper context, metadata, and historical 
-              significance, ensuring they remain accessible for research, appreciation, and cultural understanding for generations to come.
+        {/* Mission Quote */}
+        <section className="max-w-4xl mx-auto mb-20 text-center relative py-20">
+            <div className="text-6xl text-babylon-gold-600/20 absolute top-0 left-0 font-serif">“</div>
+            <p className="text-2xl md:text-3xl font-serif text-babylon-sand-200 italic leading-relaxed">
+              We build not of brick and mortar, but of data and memory.
+              Here, the song never ends, and the light never fades.
             </p>
-          </div>
+            <div className="text-6xl text-babylon-gold-600/20 absolute bottom-0 right-0 font-serif">”</div>
         </section>
 
-        {/* CTA */}
-        <section className="text-center space-y-4">
-          <Link
-            href="/search"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all shadow-lg hover:shadow-xl hover:shadow-pink-500/50 transform hover:scale-105 mr-4"
-          >
-            <span>🔍 Search Archive</span>
-          </Link>
-          <Link
-            href="/creators"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 rounded-xl font-semibold text-lg transition-all shadow-lg hover:shadow-xl hover:shadow-purple-500/50 transform hover:scale-105"
-          >
-            <span>Browse All Creators</span>
-            <span className="text-2xl">→</span>
-          </Link>
-        </section>
       </div>
     </main>
-  );
-}
-
-/* ------------------ COMPONENTS ------------------ */
-
-type StatCardProps = {
-  title: string;
-  value: number | string;
-  icon?: string;
-  gradient: string;
-};
-
-function StatCard({ title, value, icon, gradient }: StatCardProps) {
-  return (
-    <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-gray-500 transition-all hover:shadow-xl hover:scale-105 group">
-      {icon && (
-        <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">
-          {icon}
-        </div>
-      )}
-      <div className={`text-5xl font-bold mb-2 bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
-        {value}
-      </div>
-      <div className="text-gray-400 text-lg">{title}</div>
-    </div>
-  );
-}
-
-type CreatorCardProps = {
-  name: string;
-  description: string;
-  worksCount: number;
-  completeness: number;
-  href: string;
-};
-
-function CreatorCard({
-  name,
-  description,
-  worksCount,
-  completeness,
-  href,
-}: CreatorCardProps) {
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.style.display = 'none';
-  };
-
-  return (
-    <Link href={href}>
-      <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-blue-500 transition-all cursor-pointer group hover:shadow-2xl hover:shadow-blue-500/20 hover:scale-[1.02]">
-        <div className="flex gap-8 items-center">
-          {/* Creator Image */}
-          <div className="w-48 h-48 flex-shrink-0">
-            <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl overflow-hidden shadow-lg group-hover:shadow-2xl group-hover:shadow-blue-500/50 transition-all">
-              <img
-                src="/api/image?path=creators/Hoshimachi_Suisei/outfit/suisei.png"
-                alt={name}
-                className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                onError={handleImageError}
-              />
-            </div>
-          </div>
-
-          {/* Creator Info */}
-          <div className="flex-1">
-            <h3 className="text-3xl font-bold mb-3 group-hover:text-blue-400 transition-colors">
-              {name}
-            </h3>
-
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              {description}
-            </p>
-
-            <div className="flex gap-8 text-gray-300 mb-4">
-              <div className="flex items-center gap-2">
-                <span className="font-semibold">{worksCount} works archived</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold">{Math.round(completeness * 100)}% complete</span>
-              </div>
-            </div>
-
-            {/* Progress Bar */}
-            <div>
-              <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                <div
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-500 group-hover:from-blue-400 group-hover:to-purple-400"
-                  style={{ width: `${completeness * 100}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Link>
   );
 }
