@@ -1,0 +1,81 @@
+services:
+  # Database
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: library_babylon
+      POSTGRES_USER: babylon_user
+      POSTGRES_PASSWORD: babylon_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./codebase/database/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U babylon_user -d library_babylon"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Cache
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  # Backend API (placeholder - to be implemented)
+  backend:
+    build:
+      context: ./codebase/backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://babylon_user:babylon_pass@db:5432/library_babylon
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ./archive:/archive
+
+  # Frontend
+  frontend:
+    build:
+      context: ./codebase/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    volumes:
+      - ./archive:/archive # Mount the archive directory at the root
+
+  # Automation Scripts
+  automation_scripts:
+    build:
+      context: ./scripts/archive_automation
+      dockerfile: Dockerfile
+    volumes:
+      - ./archive:/archive # Mount the archive directory at the root
+      - ./scripts:/scripts # Mount the scripts directory
+    environment:
+      - DATABASE_URL=postgresql://babylon_user:babylon_pass@db:5432/library_babylon
+    depends_on:
+      db:
+        condition: service_healthy
+    # This service is intended to be run manually, e.g.:
+    # docker-compose run automation_scripts python scripts/archive_automation/archive_from_youtube.py <url> <creator>
+    working_dir: / # Set working dir to root to make paths easier
+
+volumes:
+  postgres_data:
+  redis_data:
