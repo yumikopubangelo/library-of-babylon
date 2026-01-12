@@ -1,5 +1,5 @@
 # Base image for building the frontend
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 # Set the working directory
 WORKDIR /app
@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies with retry and timeout
+RUN npm config set fetch-timeout 600000 && npm config set fetch-retry-mintimeout 20000 && npm config set fetch-retry-maxtimeout 120000 && npm ci
 
 # Copy the rest of the application code
 COPY . .
@@ -17,15 +17,19 @@ COPY . .
 RUN npm run build
 
 # Production image
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the built application from the build stage
+# Copy build artifacts and dependencies
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/package-lock.json ./package-lock.json
+COPY --from=build /app/node_modules ./node_modules
+
+# Copy the built application
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/public ./public
-COPY --from=build /app/package.json ./package.json
 COPY --from=build /app/next.config.ts ./next.config.ts
 
 # The archive folder needs to be mounted as a volume,
@@ -33,5 +37,5 @@ COPY --from=build /app/next.config.ts ./next.config.ts
 
 EXPOSE 3000
 
-# Start the Next.js application
-CMD ["npm", "start"]
+# Start the Next.js application in development mode for hot reloading
+CMD ["npm", "run", "dev"]
