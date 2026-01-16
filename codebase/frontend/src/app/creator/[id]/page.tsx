@@ -66,50 +66,66 @@ export default function CreatorPage() {
 
   if (!id) {
     return (
-      <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white p-8">
-        <div className="max-w-6xl mx-auto">Loading...</div>
+      <main className="min-h-screen bg-babylon-lapis-900 text-babylon-sand-100 p-8 pt-24">
+        <div className="max-w-6xl mx-auto text-center font-serif text-2xl animate-pulse">Consulting the archives...</div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white">
-      {/* Header Section with Background */}
-      <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-transparent h-96" />
-        <div className="relative max-w-6xl mx-auto px-8 py-16">
-          <Link href="/" className="text-blue-400 hover:text-blue-300 mb-4 inline-block">
-            Back to Home
+    <main className="min-h-screen pt-20 relative overflow-hidden text-babylon-sand-100">
+       {/* Background Ambience */}
+       <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-babylon-lapis-900/50 to-transparent"></div>
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-babylon-gold-600/5 rounded-full blur-3xl"></div>
+      </div>
+
+      {/* Header Section */}
+      <div className="relative z-10">
+        <div className="relative max-w-6xl mx-auto px-6 py-12">
+          <Link href="/creators" className="text-babylon-gold-500 hover:text-babylon-gold-400 text-sm tracking-widest uppercase mb-8 inline-block">
+             ← Back to Collection
           </Link>
           
-          <div className="flex items-end gap-8 mt-8">
-            <div className="w-48 h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg shadow-2xl flex items-center justify-center overflow-hidden">
-              <Image
-                src={`/api/image?path=creators/${id}/outfit/suisei.png`}
-                alt={id.replace(/_/g, " ")}
-                width={192}
-                height={192}
-                className="w-full h-full object-contain rounded-lg"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
+          <div className="flex flex-col md:flex-row items-end gap-12 border-b border-babylon-gold-600/20 pb-12">
+            <div className="w-64 h-64 bg-babylon-lapis-800 border border-babylon-gold-600/20 p-2 flex items-center justify-center relative shrink-0">
+                 {/* Decorative corners */}
+                <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-babylon-gold-500"></div>
+                <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-babylon-gold-500"></div>
+                <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-babylon-gold-500"></div>
+                <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-babylon-gold-500"></div>
+
+              <div className="w-full h-full relative overflow-hidden bg-babylon-lapis-900/50">
+                 <Image
+                    src={`/api/image?path=creators/${id}/outfit/suisei.png`}
+                    alt={id.replace(/_/g, " ")}
+                    width={256}
+                    height={256}
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    }}
+                />
+              </div>
             </div>
             
-            <div className="flex-1">
-              <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <div className="flex-1 w-full">
+              <h1 className="text-5xl md:text-7xl font-bold mb-4 font-serif text-babylon-sand-100">
                 {id.replace(/_/g, " ")}
               </h1>
-              <p className="text-xl text-gray-400 mb-4">
-                {loading ? 'Loading...' : `${songs.length} ${songs.length === 1 ? 'work' : 'works'} preserved for eternity`}
-              </p>
-              <div className="flex gap-4">
-                <div className="bg-gray-800/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-gray-700">
-                  <span className="text-gray-400">Total Duration:</span>
-                  <span className="ml-2 text-white font-semibold">
-                    {songs.length * 3.5} min
-                  </span>
-                </div>
+              <div className="h-1 w-24 bg-babylon-gold-500 mb-6"></div>
+
+              <div className="grid grid-cols-2 gap-8 text-sm tracking-widest uppercase text-babylon-gold-500/80">
+                  <div>
+                      <div className="mb-1">Archived Works</div>
+                      <div className="text-xl text-babylon-sand-100 font-bold font-sans">{loading ? '...' : songs.length}</div>
+                  </div>
+                  <div>
+                      <div className="mb-1">Total Duration</div>
+                      <div className="text-xl text-babylon-sand-100 font-bold font-sans">
+                         {loading ? '...' : `${Math.ceil(songs.length * 3.5)} MIN`}
+                      </div>
+                  </div>
               </div>
             </div>
           </div>
@@ -117,22 +133,22 @@ export default function CreatorPage() {
       </div>
 
       {/* Content Section */}
-      <div className="max-w-6xl mx-auto px-8 py-12">
+      <div className="max-w-6xl mx-auto px-6 pb-24 relative z-10">
         {loading ? (
-          <div className="text-center py-20">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-            <p className="mt-4 text-gray-400">Loading archive...</p>
-          </div>
+           <div className="text-center py-20 border border-babylon-gold-600/20 bg-babylon-lapis-900/50">
+                <div className="text-babylon-gold-600 mb-4 text-xl">Loading Records...</div>
+            </div>
         ) : songs.length === 0 ? (
-          <div className="text-center py-20">
-            <div className="text-6xl mb-4">📚</div>
-            <h2 className="text-2xl font-bold mb-2">No works archived yet</h2>
-            <p className="text-gray-400">Start preserving this creator&apos;s legacy</p>
+           <div className="text-center py-20 border border-babylon-gold-600/20 bg-babylon-lapis-900/50">
+            <h2 className="text-2xl font-bold mb-2 text-babylon-sand-100">No records found</h2>
+            <p className="text-babylon-sand-200/60">This section of the archive is empty.</p>
           </div>
         ) : (
           <>
-            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+            <h2 className="text-2xl font-serif text-babylon-sand-100 mb-8 flex items-center gap-4">
+              <span className="w-8 h-[1px] bg-babylon-gold-500"></span>
               Archived Works
+              <span className="flex-1 h-[1px] bg-babylon-gold-600/20"></span>
             </h2>
             
             <div className="space-y-4">
@@ -140,13 +156,13 @@ export default function CreatorPage() {
                 <div
                   key={i}
                   onClick={() => setExpandedSong(expandedSong === i ? null : i)}
-                  className={`bg-gradient-to-r from-gray-800/50 to-gray-800/30 backdrop-blur-sm p-6 rounded-xl border transition-all hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/20 cursor-pointer ${
-                    currentSong === i ? 'border-blue-500 shadow-lg shadow-blue-500/20' : 'border-gray-700'
+                  className={`bg-lapis-glass border backdrop-blur-sm p-6 transition-all cursor-pointer group hover:border-babylon-gold-600/50 ${
+                    currentSong === i ? 'border-babylon-gold-500 shadow-[0_0_15px_rgba(234,179,8,0.1)]' : 'border-babylon-gold-600/10'
                   }`}
                 >
                   <div className="flex items-start gap-6">
                     {/* Album Art / Number */}
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-3xl font-bold shadow-lg flex-shrink-0 overflow-hidden">
+                    <div className="w-20 h-20 bg-babylon-lapis-900 border border-babylon-gold-600/20 flex items-center justify-center text-xl font-serif text-babylon-gold-600/50 flex-shrink-0 overflow-hidden relative">
                       {song.thumbnail ? (
                         <Image
                           src={`/api/image?path=creators/${id}/Music/Singles/${song.thumbnail}`}
@@ -160,79 +176,69 @@ export default function CreatorPage() {
                           }}
                         />
                       ) : (
-                        i + 1
+                        <span className="font-serif italic">#{i + 1}</span>
                       )}
                     </div>
 
                     {/* Song Info */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-2xl font-bold mb-1 truncate">
-                        {song.title ?? "Untitled"}
+                      <h3 className="text-2xl font-bold mb-1 truncate font-serif text-babylon-sand-100 group-hover:text-gold-gradient transition-all">
+                        {song.title ?? "Untitled Record"}
                       </h3>
-                      <p className="text-blue-400 mb-3">{song.artist}</p>
+                      <p className="text-babylon-gold-500/80 mb-3 text-sm tracking-widest uppercase">{song.artist}</p>
                       
                       {song.description && (
-                        <p className="text-gray-300 mb-3 line-clamp-2">
-                          {song.description}
+                        <p className="text-babylon-sand-200/60 mb-3 line-clamp-2 text-sm italic font-serif">
+                          "{song.description}"
                         </p>
                       )}
 
-                      <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-4">
+                      <div className="flex flex-wrap gap-4 text-xs text-babylon-sand-200/40 mb-4 tracking-widest uppercase">
                         {song.Release_date && (
                           <span className="flex items-center gap-1">
                             {song.Release_date}
                           </span>
                         )}
                         {song.archived_by && (
-                          <span className="flex items-center gap-1">
-                            Archived by {song.archived_by}
+                          <span className="flex items-center gap-1 border-l border-babylon-gold-600/20 pl-4">
+                            Archivist: {song.archived_by}
                           </span>
-                        )}
-                        {song.source && (
-                          <a
-                            href={song.source}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-blue-400 hover:text-blue-300"
-                          >
-                            Source
-                          </a>
                         )}
                       </div>
 
                       {/* Audio Player */}
                       {song.audio && (
-                        <div className="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+                        <div className="bg-babylon-lapis-900/50 p-4 border border-babylon-gold-600/10">
                           <div className="flex items-center gap-4">
                             <button
                               onClick={(e) => { e.stopPropagation(); playAudio(i); }}
-                              className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${
+                              className={`w-12 h-12 flex items-center justify-center transition-all border border-babylon-gold-500/50 ${
                                 currentSong === i && isPlaying
-                                  ? 'bg-blue-500 hover:bg-blue-600 shadow-lg shadow-blue-500/50'
-                                  : 'bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600'
+                                  ? 'bg-babylon-gold-600 text-babylon-lapis-900'
+                                  : 'bg-transparent text-babylon-gold-500 hover:bg-babylon-gold-600/10'
                               }`}
                             >
                               {currentSong === i && isPlaying ? (
-                                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M6 4a1 1 0 00-1 1v10a1 1 0 001 1h1a1 1 0 001-1V5a1 1 0 00-1-1H6zM12 4a1 1 0 00-1 1v10a1 1 0 001 1h1a1 1 0 001-1V5a1 1 0 00-1-1h-1z" clipRule="evenodd" />
                                 </svg>
                               ) : (
-                                <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M8 5.14v9.72a1 1 0 001.555.832l6-4.5a1 1 0 000-1.664l-6-4.5A1 1 0 008 5.14z" clipRule="evenodd" />
                                 </svg>
                               )}
                             </button>
 
                             <div className="flex-1">
-                              <div className="flex justify-between text-xs text-gray-400 mb-1">
-                                <span>Preview (30s)</span>
+                              <div className="flex justify-between text-xs text-babylon-gold-500/50 mb-2 tracking-widest font-mono">
+                                <span>PLAYBACK</span>
                                 <span>
                                   {currentSong === i ? `${Math.floor(currentTime)}s` : '0s'} / 30s
                                 </span>
                               </div>
-                              <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                              <div className="w-full bg-babylon-lapis-900 h-1 overflow-hidden">
                                 <div
-                                  className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full transition-all duration-300"
+                                  className="bg-babylon-gold-500 h-full transition-all duration-300"
                                   style={{ width: `${currentSong === i ? (currentTime / 30) * 100 : 0}%` }}
                                 />
                               </div>
@@ -247,54 +253,64 @@ export default function CreatorPage() {
                       )}
 
                       {expandedSong === i && (
-                        <div className="mt-4 pt-4 border-t border-gray-600">
-                          {song.thumbnail && (
-                            <div className="mb-4 flex justify-center">
-                              <div className="w-full max-w-xs h-64 bg-gray-800 rounded-lg overflow-hidden flex items-center justify-center">
-                                <Image
-                                  src={`/api/image?path=creators/${id}/Music/Singles/${song.thumbnail}`}
-                                  alt={`${song.title} cover`}
-                                  width={300}
-                                  height={300}
-                                  className="w-full h-full object-contain"
-                                  onError={(e) => {
-                                    e.currentTarget.style.display = 'none';
-                                  }}
-                                />
-                              </div>
-                            </div>
-                          )}
-                          {song.analysis ? (
-                            <div className="prose prose-invert max-w-none">
-                              <div className="text-sm text-gray-300 whitespace-pre-wrap font-mono leading-relaxed">
-                                {song.analysis}
-                              </div>
-                            </div>
-                          ) : (
-                            <>
-                              <h4 className="text-lg font-semibold mb-2">Full Metadata</h4>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                {song.archived_date && (
-                                  <div>
-                                    <span className="text-gray-400">Archived Date:</span>
-                                    <span className="ml-2 text-white">{song.archived_date}</span>
-                                  </div>
-                                )}
-                                {song.archived_by && (
-                                  <div>
-                                    <span className="text-gray-400">Archived By:</span>
-                                    <span className="ml-2 text-white">{song.archived_by}</span>
-                                  </div>
-                                )}
-                                {song.audio && (
-                                  <div className="md:col-span-2">
-                                    <span className="text-gray-400">Audio File:</span>
-                                    <span className="ml-2 text-white">{song.audio}</span>
-                                  </div>
-                                )}
-                              </div>
-                            </>
-                          )}
+                        <div className="mt-6 pt-6 border-t border-babylon-gold-600/10 animate-in fade-in slide-in-from-top-4 duration-300">
+                           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <div className="md:col-span-1">
+                                    {song.thumbnail && (
+                                        <div className="w-full aspect-square bg-babylon-lapis-900 border border-babylon-gold-600/20 flex items-center justify-center p-2">
+                                            <Image
+                                                src={`/api/image?path=creators/${id}/Music/Singles/${song.thumbnail}`}
+                                                alt={`${song.title} cover`}
+                                                width={300}
+                                                height={300}
+                                                className="w-full h-full object-contain"
+                                                onError={(e) => {
+                                                    e.currentTarget.style.display = 'none';
+                                                }}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="md:col-span-2">
+                                    <h4 className="text-babylon-gold-500 tracking-widest uppercase text-sm mb-4 border-b border-babylon-gold-600/10 pb-2">Analysis Data</h4>
+
+                                    {song.analysis ? (
+                                        <div className="prose prose-invert max-w-none">
+                                        <div className="text-sm text-babylon-sand-200/80 whitespace-pre-wrap font-mono leading-relaxed bg-babylon-lapis-900/30 p-4 border border-babylon-gold-600/5">
+                                            {song.analysis}
+                                        </div>
+                                        </div>
+                                    ) : (
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-sm">
+                                            {song.archived_date && (
+                                                <div className="flex flex-col">
+                                                    <span className="text-babylon-gold-500/50 text-xs uppercase tracking-widest mb-1">Date Archived</span>
+                                                    <span className="text-babylon-sand-100 font-mono">{song.archived_date}</span>
+                                                </div>
+                                            )}
+                                            {song.archived_by && (
+                                                <div className="flex flex-col">
+                                                    <span className="text-babylon-gold-500/50 text-xs uppercase tracking-widest mb-1">Archivist</span>
+                                                    <span className="text-babylon-sand-100 font-mono">{song.archived_by}</span>
+                                                </div>
+                                            )}
+                                            {song.audio && (
+                                                <div className="flex flex-col sm:col-span-2">
+                                                    <span className="text-babylon-gold-500/50 text-xs uppercase tracking-widest mb-1">Source File</span>
+                                                    <span className="text-babylon-sand-100 font-mono break-all">{song.audio}</span>
+                                                </div>
+                                            )}
+                                            {song.source && (
+                                                 <div className="flex flex-col sm:col-span-2 mt-2">
+                                                     <a href={song.source} target="_blank" rel="noopener" className="text-babylon-gold-500 hover:text-babylon-sand-100 underline decoration-babylon-gold-600/30 underline-offset-4 transition-colors">
+                                                         View Original Source ↗
+                                                     </a>
+                                                 </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                           </div>
                         </div>
                       )}
                     </div>
@@ -335,7 +351,7 @@ function WaveformVisualizer() {
   }));
 
   return (
-    <div className="flex gap-1 mt-3 justify-center h-12 items-end">
+    <div className="flex gap-[2px] mt-4 justify-center h-8 items-end opacity-50">
       {bars.map((bar) => (
         <WaveformBar key={bar.id} height={bar.height} delay={bar.delay} />
       ))}
@@ -346,7 +362,7 @@ function WaveformVisualizer() {
 function WaveformBar({ height, delay }: { height: number; delay: number }) {
   return (
     <div
-      className="w-1 bg-gradient-to-t from-blue-500 to-purple-500 rounded-full animate-pulse"
+      className="w-[2px] bg-babylon-gold-500 rounded-full animate-pulse"
       style={{ 
         height: `${height}%`,
         animationDelay: `${delay}s`,
