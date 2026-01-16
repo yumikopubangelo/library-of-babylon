@@ -18,10 +18,11 @@ export default function Home() {
   const [creators, setCreators] = useState<Creator[]>([]);
   const [totalWorks, setTotalWorks] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [adminActivated, setAdminActivated] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    fetch("/api/creator", { cache: "no-store" })
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/creator`, { cache: "no-store" })
       .then(res => res.json())
       .then(data => {
         const creatorList: Creator[] = data.creators || [];
@@ -33,6 +34,15 @@ export default function Home() {
         console.error("Failed to fetch creators:", err);
         setLoading(false);
       });
+  }, []);
+
+  useEffect(() => {
+    const checkAdmin = () => {
+      setAdminActivated(localStorage.getItem('admin_sequence') === 'activated');
+    };
+    checkAdmin();
+    window.addEventListener('storage', checkAdmin);
+    return () => window.removeEventListener('storage', checkAdmin);
   }, []);
 
   const featuredCreator = creators.find(c => c.id === "Hoshimachi_Suisei");
@@ -72,7 +82,13 @@ export default function Home() {
           
           <div className="flex justify-center gap-6">
             <Link
-              href="/search"
+              href={adminActivated ? '/admin/login' : '/search'}
+              onClick={() => {
+                if (adminActivated) {
+                  localStorage.removeItem('admin_sequence');
+                  setAdminActivated(false);
+                }
+              }}
               className="group relative px-8 py-4 bg-babylon-lapis-800 border border-babylon-gold-500/50 hover:bg-babylon-gold-600 hover:text-white transition-all duration-300"
             >
               <span className="font-serif tracking-widest">ENTER ARCHIVE</span>
@@ -85,17 +101,14 @@ export default function Home() {
           <StatCard
             title="Creators Archived"
             value={loading ? '...' : creators.length}
-            icon="🏛️"
           />
           <StatCard
             title="Works Preserved"
             value={loading ? '...' : totalWorks}
-            icon="📜"
           />
           <StatCard
             title="Days Since Genesis"
             value={loading ? '...' : getDaysSinceGenesis()}
-            icon="⏳"
           />
         </section>
 
@@ -117,9 +130,9 @@ export default function Home() {
               name={featuredCreator.name}
               description={featuredCreator.description || "A pioneering VTuber known for her exceptional music and performances."}
               worksCount={featuredCreator.worksCount}
-              completeness={featuredCreator.completeness}
+              completeness={featuredCreator.worksCount / 150}
               href={`/creator/${featuredCreator.id}`}
-              imagePath={featuredCreator.imagePath ? `/api/image?path=${featuredCreator.imagePath}` : ''}
+              imagePath={`/api/image?path=creators/${featuredCreator.id}/outfit/suisei.png`}
             />
           ) : (
             <div className="text-center py-20 border border-babylon-gold-600/20 bg-babylon-lapis-900/50">

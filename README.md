@@ -19,9 +19,45 @@ The project is divided into several key components:
 
 ## Getting Started
 
-To get started with the development of the Library of Babylon, you will need to set up the different components of the project.
+### Docker Setup (Recommended)
 
-### Frontend
+The easiest way to run the entire stack is using Docker Compose:
+
+1. **Prerequisites**: Install Docker and Docker Compose
+2. **Start all services**:
+   ```bash
+   docker-compose up -d
+   ```
+3. **Access the applications**:
+   - **Frontend**: http://localhost:3000
+   - **Backend API**: http://localhost:8000
+   - **pgAdmin (Database Admin)**: http://localhost:8080
+     - Email: admin@librarybabylon.com
+     - Password: admin123
+   - **PostgreSQL**: localhost:5432 (babylon_user/babylon_pass)
+
+4. **Database Setup**:
+   - Open pgAdmin at http://localhost:8080
+   - Add server connection:
+     - Host: db
+     - Database: library_babylon
+     - Username: babylon_user
+     - Password: babylon_pass
+   - Create admin user by running the seed script:
+     ```bash
+     docker-compose exec backend python database/seeds/admin_user.py
+     ```
+
+5. **Admin Login**:
+   - Go to http://localhost:3000/admin/login
+   - Username: admin
+   - Password: admin123
+
+### Manual Setup
+
+If you prefer to run components individually:
+
+#### Frontend
 
 The frontend is a Next.js application. To run it locally:
 
@@ -29,7 +65,7 @@ The frontend is a Next.js application. To run it locally:
 2.  Install the dependencies: `npm install`
 3.  Run the development server: `npm run dev`
 
-### Backend
+#### Backend
 
 (Instructions for setting up the backend will be added here once the backend is further developed.)
 

@@ -17,6 +17,19 @@ services:
       timeout: 5s
       retries: 5
 
+  # Database Admin Interface
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@librarybabylon.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
   # Cache
   redis:
     image: redis:7-alpine
@@ -42,6 +55,7 @@ services:
       redis:
         condition: service_started
     volumes:
+      - ./codebase/backend:/app
       - ./archive:/archive
 
   # Frontend
@@ -82,3 +96,4 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  pgadmin_data:

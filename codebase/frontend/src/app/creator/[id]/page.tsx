@@ -344,11 +344,13 @@ export default function CreatorPage() {
 
 // Waveform Visualizer Component
 function WaveformVisualizer() {
-  const bars = Array.from({ length: 40 }, (_, idx) => ({
-    id: idx,
-    height: Math.floor(Math.random() * 80) + 20, // 20-100%
-    delay: idx * 0.05,
-  }));
+  const [bars] = useState(() => {
+    return Array.from({ length: 40 }, (_, idx) => ({
+      id: idx,
+      height: Math.floor(Math.random() * 80) + 20, // 20-100%
+      delay: idx * 0.05,
+    }));
+  });
 
   return (
     <div className="flex gap-[2px] mt-4 justify-center h-8 items-end opacity-50">

@@ -1,0 +1,15 @@
+{
+  "executionEnvironments": [
+    {
+      "root": "codebase/backend/src"
+    },
+    {
+      "root": "codebase/backend",
+      "extraPaths": ["codebase/backend/src"]
+    },
+    {
+      "root": "codebase/database",
+      "extraPaths": ["codebase/backend/src"]
+    }
+  ]
+}

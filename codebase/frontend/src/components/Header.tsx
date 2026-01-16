@@ -1,17 +1,36 @@
-import Link from 'next/link';
+'use client';
 
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Header() {
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleTitleClick = () => {
+    setClickCount(prev => {
+      const newCount = prev + 1;
+      if (newCount === 3) {
+        localStorage.setItem('admin_sequence', 'activated');
+        setTimeout(() => setClickCount(0), 1000); // Reset after 1 second
+        return 0;
+      }
+      return newCount;
+    });
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-lapis-glass border-b border-babylon-gold-600/20">
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center py-4">
-          
+
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-serif font-bold text-gold-gradient tracking-wider">
+            <div
+              onClick={handleTitleClick}
+              className="text-2xl font-serif font-bold text-gold-gradient tracking-wider cursor-pointer"
+            >
               Library of Babylon
-            </Link>
+            </div>
           </div>
 
           {/* Navigation */}

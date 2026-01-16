@@ -193,13 +193,11 @@ export default function SearchPage() {
           </>
         ) : query || Object.values(filters).some(v => v) ? (
           <div className="text-center py-24 border border-babylon-gold-600/20 bg-babylon-lapis-900/50">
-            <div className="text-6xl mb-6 opacity-30 grayscale">🔍</div>
             <h2 className="text-2xl font-serif text-babylon-sand-100 mb-2">No results found</h2>
             <p className="text-babylon-sand-200/60">The archives contain no matching records.</p>
           </div>
         ) : (
           <div className="text-center py-24 border border-babylon-gold-600/20 bg-babylon-lapis-900/50">
-            <div className="text-6xl mb-6 opacity-30 grayscale">📚</div>
             <h2 className="text-2xl font-serif text-babylon-sand-100 mb-2">Search the Archive</h2>
             <p className="text-babylon-sand-200/60">Enter keywords or use filters to discover works.</p>
           </div>
@@ -227,7 +225,7 @@ function SearchResultCard({ result }: { result: SearchResult }) {
               onError={handleImageError}
             />
           ) : (
-            <span className="text-4xl opacity-50">🎵</span>
+            null
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-babylon-lapis-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>

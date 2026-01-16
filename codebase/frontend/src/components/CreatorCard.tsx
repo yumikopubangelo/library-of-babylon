@@ -6,7 +6,7 @@ type CreatorCardProps = {
   worksCount: number;
   completeness: number;
   href: string;
-  imagePath: string;
+  imagePath?: string;
   variant?: 'horizontal' | 'vertical';
 };
 
@@ -16,7 +16,7 @@ export default function CreatorCard({
   worksCount,
   completeness,
   href,
-  imagePath,
+  imagePath = '',
   variant = 'horizontal',
 }: CreatorCardProps) {
 
@@ -31,12 +31,14 @@ export default function CreatorCard({
       <div className={`bg-lapis-glass border border-babylon-gold-600/10 group transition-all hover:border-babylon-gold-600/30 h-full flex ${isHorizontal ? 'flex-col md:flex-row' : 'flex-col'}`}>
         {/* Image */}
         <div className={`${isHorizontal ? 'w-full md:w-1/3 h-80 md:h-auto' : 'w-full h-80'} relative shrink-0 overflow-hidden bg-babylon-lapis-900/20`}>
-          <img
-            src={imagePath}
-            alt={name}
-            className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
-            onError={handleImageError}
-          />
+          {imagePath && (
+            <img
+              src={imagePath}
+              alt={name}
+              className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+              onError={handleImageError}
+            />
+          )}
           <div className={`absolute inset-0 pointer-events-none ${isHorizontal ? 'bg-gradient-to-t md:bg-gradient-to-r from-babylon-lapis-900/50 via-transparent to-transparent' : 'bg-gradient-to-t from-babylon-lapis-900/50 via-transparent to-transparent'}`}></div>
         </div>
 

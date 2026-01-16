@@ -33,3 +33,22 @@ class SearchResult(BaseModel):
 class SearchResponse(BaseModel):
     results: List[SearchResult]
     total: int
+
+# Authentication models
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str
+
+class User(BaseModel):
+    id: int
+    username: str
+    email: str
+    role: str  # 'admin' or 'user'
+    is_active: bool = True

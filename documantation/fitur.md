@@ -47,7 +47,13 @@ Dokumen ini menjelaskan fitur-fitur utama yang ada dalam proyek Library of Babyl
 - **Penelitian Budaya**: Analisis pengaruh VTuber dan timeline budaya VTuber.
 - **Panduan Kontribusi**: Aturan untuk berkontribusi pada proyek.
 
-## 8. Komunitas dan Dukungan (Community & Support)
+## 8. Sistem Admin (Admin System)
+- **Autentikasi Admin**: Login aman untuk administrator dengan JWT tokens.
+- **Dashboard Admin**: Antarmuka untuk mengelola arsip, mengupload konten, dan mengedit metadata.
+- **Manajemen Konten**: Tools untuk menambah, mengedit, dan menghapus konten arsip.
+- **Keamanan**: Role-based access control dan verifikasi admin.
+
+## 9. Komunitas dan Dukungan (Community & Support)
 - **Panduan Komunitas**: Template dan cerita untuk keterlibatan komunitas.
 - **Dukungan Finansial**: Sistem donor, laporan keuangan, dan proposal grant.
 - **Aspek Legal**: Wasiat pendiri dan dokumen legal lainnya.

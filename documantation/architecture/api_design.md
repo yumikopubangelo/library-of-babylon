@@ -6,7 +6,7 @@ This document outlines the design of the API for the Library of Babylon project.
 
 -   **Base URL**: All API endpoints are relative to `/api`.
 -   **Data Format**: The API exclusively uses JSON for requests and responses.
--   **Authentication**: Currently, all endpoints are public and do not require authentication.
+-   **Authentication**: Public endpoints are accessible without authentication. Admin endpoints require JWT Bearer tokens.
 -   **Error Handling**: The API uses standard HTTP status codes to indicate the success or failure of a request. Error responses include a JSON object with an `error` key.
 
 ## Data Models
@@ -152,6 +152,46 @@ A condensed object representing a work found via the search endpoint.
     }
   ],
   "total": 1
+}
+```
+
+## Authentication Endpoints
+
+### Admin Login
+
+-   **Endpoint**: `POST /api/auth/login`
+-   **Description**: Authenticates an admin user and returns a JWT access token.
+-   **Request Body**: Form data with `username` and `password` fields.
+-   **Response**: JSON object with `access_token` and `token_type`.
+
+**Example Request:**
+```
+POST /api/auth/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=admin123
+```
+
+**Example Response:**
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "bearer"
+}
+```
+
+### Get Current User
+
+-   **Endpoint**: `GET /api/auth/me`
+-   **Description**: Returns information about the currently authenticated user.
+-   **Authentication**: Required (Bearer token in Authorization header).
+-   **Response**: JSON object with user information.
+
+**Example Response:**
+```json
+{
+  "username": "admin",
+  "role": "admin"
 }
 ```
 

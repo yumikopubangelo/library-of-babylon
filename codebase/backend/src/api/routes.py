@@ -4,7 +4,7 @@ import os
 import json
 from pathlib import Path
 
-from ..models import Creator, Song, SearchResponse, SearchResult
+from models import Creator, Song, SearchResponse, SearchResult
 
 router = APIRouter()
 

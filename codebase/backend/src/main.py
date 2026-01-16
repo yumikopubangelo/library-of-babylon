@@ -3,10 +3,16 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
 
-from .api.routes import router
+from api.routes import router
+from api.auth import router as auth_router
+from database.connection import engine
+from database.models import Base
 
 # Load environment variables
 load_dotenv()
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Library of Babylon API",
@@ -25,6 +31,7 @@ app.add_middleware(
 
 # Include API routes
 app.include_router(router, prefix="/api")
+app.include_router(auth_router, prefix="/api/auth", tags=["authentication"])
 
 @app.get("/")
 async def root():
