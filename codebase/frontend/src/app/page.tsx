@@ -3,118 +3,22 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, FormEvent, ReactNode } from "react";
+import { CreatorCard, StatCard } from "@/components";
 
 type Creator = {
   id: string;
-  name: string;
+  name:string;
   worksCount: number;
   completeness: number;
   description?: string;
+  imagePath?: string;
 };
-
-// --- Re-integrating Components into page.tsx ---
-
-type StatCardProps = {
-  title: string;
-  value: number | string;
-  icon?: ReactNode;
-};
-
-function StatCard({ title, value, icon }: StatCardProps) {
-  return (
-    <div className="bg-lapis-glass border border-babylon-gold-600/10 p-6 text-center transition-all hover:border-babylon-gold-600/20 hover:-translate-y-1">
-      {icon && (
-        <div className="text-4xl mb-4 opacity-70">
-          {icon}
-        </div>
-      )}
-      <div className="text-5xl font-bold text-gold-gradient mb-2">
-        {value}
-      </div>
-      <div className="text-babylon-sand-200/70 tracking-widest uppercase text-sm">
-        {title}
-      </div>
-    </div>
-  );
-}
-
-type CreatorCardProps = {
-  name: string;
-  description: string;
-  worksCount: number;
-  completeness: number;
-  href: string;
-  imagePath: string;
-};
-
-function CreatorCard({
-  name,
-  description,
-  worksCount,
-  completeness,
-  href,
-  imagePath,
-}: CreatorCardProps) {
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.style.display = 'none';
-  };
-
-  return (
-    <Link href={href}>
-      <div className="bg-lapis-glass border border-babylon-gold-600/10 group transition-all hover:border-babylon-gold-600/30">
-        <div className="flex flex-col md:flex-row items-center">
-          {/* Image */}
-          <div className="w-full md:w-1/3 h-80 md:h-[450px] relative self-stretch">
-            <img
-              src={imagePath}
-              alt={name}
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              onError={handleImageError}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-babylon-lapis-900 via-transparent to-transparent"></div>
-          </div>
-
-          {/* Info */}
-          <div className="w-full md:w-2/3 p-8 md:p-12">
-            <h3 className="text-4xl font-bold font-serif mb-4 text-babylon-sand-100 group-hover:text-gold-gradient transition-all duration-300">
-              {name.replace(/_/g, " ")}
-            </h3>
-            <p className="text-babylon-sand-200/80 mb-8 leading-relaxed">
-              {description}
-            </p>
-
-            <div className="flex items-center gap-8 mb-6">
-              <div>
-                <div className="text-sm text-babylon-gold-500 tracking-widest">WORKS</div>
-                <div className="text-2xl font-bold text-babylon-sand-100">{worksCount}</div>
-              </div>
-              <div>
-                <div className="text-sm text-babylon-gold-500 tracking-widest">COMPLETENESS</div>
-                <div className="text-2xl font-bold text-babylon-sand-100">{Math.round(completeness * 100)}%</div>
-              </div>
-            </div>
-
-            {/* Progress Bar */}
-            <div className="w-full bg-babylon-lapis-900 rounded-full h-2 overflow-hidden border border-babylon-gold-600/20">
-              <div
-                className="bg-babylon-gold-500 h-full"
-                style={{ transition: 'width 0.5s ease-out', width: `${completeness * 100}%` }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </Link>
-  );
-}
-
 
 export default function Home() {
   const [creators, setCreators] = useState<Creator[]>([]);
   const [totalWorks, setTotalWorks] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  // Re-enabling the API call
   useEffect(() => {
     setLoading(true);
     fetch("/api/creator", { cache: "no-store" })
@@ -215,7 +119,7 @@ export default function Home() {
               worksCount={featuredCreator.worksCount}
               completeness={featuredCreator.completeness}
               href={`/creator/${featuredCreator.id}`}
-              imagePath={`/api/image?path=creators/${featuredCreator.id}/outfit/suisei.png`}
+              imagePath={featuredCreator.imagePath ? `/api/image?path=${featuredCreator.imagePath}` : ''}
             />
           ) : (
             <div className="text-center py-20 border border-babylon-gold-600/20 bg-babylon-lapis-900/50">

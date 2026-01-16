@@ -31,11 +31,13 @@ COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/public ./public
 COPY --from=build /app/next.config.ts ./next.config.ts
+COPY --from=build /app/src ./src
+COPY --from=build /app/tsconfig.json ./tsconfig.json
 
 # The archive folder needs to be mounted as a volume,
 # so the API routes can access it.
 
 EXPOSE 3000
 
-# Start the Next.js application in development mode for hot reloading
-CMD ["npm", "run", "dev"]
+# Start the Next.js application in production mode
+CMD ["npm", "run", "start"]

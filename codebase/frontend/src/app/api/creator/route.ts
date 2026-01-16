@@ -20,13 +20,26 @@ export async function GET() {
       .map((name) => {
         const creatorPath = path.join(archivePath, name);
 
+        // --- NEW: Find creator image ---
+        const outfitPath = path.join(creatorPath, "outfit");
+        let creatorImage = "creators/Hoshimachi_Suisei/outfit/suisei.png"; // Default placeholder
+        
+        if (fs.existsSync(outfitPath)) {
+          try {
+            const files = fs.readdirSync(outfitPath);
+            const imageFile = files.find(file => /\.(png|jpg|jpeg|gif|webp)$/i.test(file));
+            if (imageFile) {
+              creatorImage = `creators/${name}/outfit/${imageFile}`;
+            }
+          } catch (e) {
+            console.error(`Could not read outfit directory for ${name}:`, e);
+          }
+        }
+
         // Metadata folder
         const metadataFolder = path.join(creatorPath, "Music", "Singles");
-
         let jsonCount = 0;
-
         if (fs.existsSync(metadataFolder)) {
-          // Count subdirectories (each represents a work)
           jsonCount = fs
             .readdirSync(metadataFolder, { withFileTypes: true })
             .filter((dirent) => dirent.isDirectory()).length;
@@ -37,6 +50,7 @@ export async function GET() {
           name: name.replace(/_/g, " "),
           worksCount: jsonCount,
           completeness: jsonCount / 150, // Example total works for Suisei
+          imagePath: creatorImage,
         };
       });
 

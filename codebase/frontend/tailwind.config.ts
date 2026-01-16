@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-lato)'],
+        serif: ['var(--font-cinzel)'],
+      },
       colors: {
         babylon: {
           lapis: {

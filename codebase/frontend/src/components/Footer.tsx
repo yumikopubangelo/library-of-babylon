@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-babylon-sand-100 mb-4">Library of Babylon</h3>
             <p className="text-sm">
-              A 200-year digital archive preserving ephemeral digital creators and their works
+              A digital archive preserving ephemeral digital creators and their works
               for future generations.
             </p>
           </div>
