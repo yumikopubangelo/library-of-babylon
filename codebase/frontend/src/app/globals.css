@@ -1,54 +1,57 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Babylon Color Palette */
+  --babylon-lapis-950: #0a0e17; /* Deepest Void Blue */
+  --babylon-lapis-900: #101828; /* Dark Blue */
+  --babylon-lapis-800: #1e2b45; /* Lapis Stone */
+  --babylon-gold-500: #d4af37;  /* Metallic Gold */
+  --babylon-gold-400: #e5c158;  /* Bright Gold */
+  --babylon-gold-600: #aa8c2c;  /* Dark Gold */
+  --babylon-sand-100: #f3f0e6;  /* Parchment White */
+  --babylon-sand-200: #e6dec8;  /* Aged Paper */
+  --babylon-clay-500: #c27ba0;  /* Faded Clay/Purple (optional accent) */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-babylon-lapis-950: var(--babylon-lapis-950);
+  --color-babylon-lapis-900: var(--babylon-lapis-900);
+  --color-babylon-lapis-800: var(--babylon-lapis-800);
+  --color-babylon-gold-500: var(--babylon-gold-500);
+  --color-babylon-gold-400: var(--babylon-gold-400);
+  --color-babylon-gold-600: var(--babylon-gold-600);
+  --color-babylon-sand-100: var(--babylon-sand-100);
+  --color-babylon-sand-200: var(--babylon-sand-200);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: var(--font-cinzel);
+  --font-sans: var(--font-lato);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--babylon-lapis-950);
+  color: var(--babylon-sand-100);
+  font-family: var(--font-lato), sans-serif;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cinzel), serif;
 }
 
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Custom Utilities */
+.text-gold-gradient {
+  background: linear-gradient(to right, #d4af37, #f7ef8a, #d4af37);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.animate-fade-in {
-  animation: fade-in 1s ease-out forwards;
+.border-gold {
+  border-color: var(--babylon-gold-500);
 }
 
-.animate-fade-in-up {
-  animation: fade-in-up 1s ease-out forwards;
+.bg-lapis-glass {
+  background: rgba(16, 24, 40, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
+
